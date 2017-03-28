@@ -15,6 +15,9 @@ export class HomePage {
 
   addWeather() {
     let modal = this.modalCtrl.create(AddPage);
+    modal.onDidDismiss( (data) => {
+      this.weatherList.push(data);
+    });
     modal.present();
   }
 }

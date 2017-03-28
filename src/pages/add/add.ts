@@ -12,8 +12,8 @@ export class AddPage {
   constructor(public platform: Platform,
     public params: NavParams, public viewCtrl: ViewController) {}
 
-    dismiss() {
-      this.viewCtrl.dismiss();
+    dismiss(formData) {
+      this.viewCtrl.dismiss(formData);
     }
 
   ionViewDidLoad() {

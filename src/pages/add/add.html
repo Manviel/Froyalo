@@ -16,18 +16,18 @@
   <ion-list>
     <ion-item>
       <ion-label stacked>City</ion-label>
-      <ion-input type="text"></ion-input>
+      <ion-input type="text" [(ngModel)]="data.city"></ion-input>
     </ion-item>
 
     <ion-item>
       <ion-label stacked>Country</ion-label>
-      <ion-select>
+      <ion-select [(ngModel)]="data.country">
         <ion-option value="us">USA</ion-option>
         <ion-option value="ukr">Ukraine</ion-option>
       </ion-select>
     </ion-item>
   </ion-list>
-  <div>
-    <button ion-button (click)="dismiss()"></button>
+  <div padding>
+    <button ion-button block (click)="dismiss(data)">Add Weather</button>
   </div>
 </ion-content>
