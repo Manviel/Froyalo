@@ -5,12 +5,14 @@ import { HomePage } from '../pages/home/home';
 import { AddPage } from '../pages/add/add';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { TemperaturePipe } from '../pipes/temperature';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    AddPage
+    AddPage,
+    TemperaturePipe
   ],
   imports: [
     IonicModule.forRoot(MyApp)
