@@ -38,4 +38,8 @@ export class HomePage {
     () => console.log('get'))
   }
 
+  viewForecast(cityWeather) {
+    console.log('view forecast');
+  }
+
 }
