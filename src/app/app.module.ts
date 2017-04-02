@@ -6,13 +6,15 @@ import { AddPage } from '../pages/add/add';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TemperaturePipe } from '../pipes/temperature';
+import { ForecastPage } from '../pages/forecast/forecast';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     AddPage,
-    TemperaturePipe
+    TemperaturePipe,
+    ForecastPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -21,7 +23,8 @@ import { TemperaturePipe } from '../pipes/temperature';
   entryComponents: [
     MyApp,
     HomePage,
-    AddPage
+    AddPage,
+    ForecastPage
   ],
   providers: [
     StatusBar,

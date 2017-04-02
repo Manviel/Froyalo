@@ -4,17 +4,18 @@ import { AddPage } from '../add/add';
 import { Weather } from '../../providers/weather';
 import 'rxjs/bundles/Rx';
 import 'rxjs/add/operator/map';
+import { ForecastPage } from '../forecast/forecast';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'home.html',
-  providers: [Weather]
+  templateUrl: 'home.html'
 })
 
 export class HomePage {
   public weatherList = [];
 
-  constructor(public modalCtrl: ModalController, public weather: Weather) {
+  constructor(public modalCtrl: ModalController, public weather: Weather, public navCtrl: NavController) {
   }
 
   addWeather() {
@@ -39,7 +40,7 @@ export class HomePage {
   }
 
   viewForecast(cityWeather) {
-    console.log('view forecast');
+    this.navCtrl.push(ForecastPage, {cityWeather: cityWeather});
   }
 
 }
