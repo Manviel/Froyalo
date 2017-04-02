@@ -14,8 +14,10 @@ import { NavController } from 'ionic-angular';
 
 export class HomePage {
   public weatherList = [];
+  public localWeather: Object;
 
   constructor(public modalCtrl: ModalController, public weather: Weather, public navCtrl: NavController) {
+    this.getLocalWeather();
   }
 
   addWeather() {
@@ -37,6 +39,14 @@ export class HomePage {
       },
     err => console.log(err),
     () => console.log('get'))
+  }
+
+  getLocalWeather() {
+    this.weather.local().subscribe(
+      data => {
+        this.localWeather = data;
+      }
+    )
   }
 
   viewForecast(cityWeather) {
