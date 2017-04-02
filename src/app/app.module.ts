@@ -7,6 +7,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { TemperaturePipe } from '../pipes/temperature';
 import { ForecastPage } from '../pages/forecast/forecast';
+import { WeatherElem } from '../components/weather/weather';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ForecastPage } from '../pages/forecast/forecast';
     HomePage,
     AddPage,
     TemperaturePipe,
-    ForecastPage
+    ForecastPage,
+    WeatherElem
   ],
   imports: [
     IonicModule.forRoot(MyApp)
