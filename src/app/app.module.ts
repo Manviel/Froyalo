@@ -8,6 +8,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { TemperaturePipe } from '../pipes/temperature';
 import { ForecastPage } from '../pages/forecast/forecast';
 import { WeatherElem } from '../components/weather/weather';
+import { IonicStorageModule } from '@ionic/storage';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { WeatherElem } from '../components/weather/weather';
     WeatherElem
   ],
   imports: [
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    IonicStorageModule.forRoot()
   ],
   bootstrap: [IonicApp],
   entryComponents: [

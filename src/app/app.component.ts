@@ -5,10 +5,11 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HomePage } from '../pages/home/home';
 import { Weather } from '../providers/weather';
 import { Geolocation } from '@ionic-native/geolocation';
+import { StorageService } from '../providers/storage';
 
 @Component({
   templateUrl: 'app.html',
-  providers: [Weather, Geolocation]
+  providers: [Weather, Geolocation, StorageService]
 })
 export class MyApp {
   rootPage = HomePage;
