@@ -14,6 +14,7 @@ import { StorageService } from '../../providers/storage';
 })
 
 export class HomePage {
+  pages: string = 'weather, todo';
   public weatherList = [];
   public localWeather: Object;
 
