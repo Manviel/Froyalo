@@ -28,9 +28,23 @@
    <div [ngSwitch]="pages">
 
      <ion-list *ngSwitchCase="'todo'">
-      <ion-item *ngFor="let item of items" (click)="viewItem(item)">
-        {{item.title}}
-      </ion-item>
+       <ion-item-sliding>
+         <ion-item *ngFor="let item of items" (click)="viewItem(item)">
+         <ion-avatar item-left>
+           {{item.title}}
+         </ion-avatar>
+       </ion-item>
+       <ion-item-options>
+        <button ion-button color="primary" icon-left>
+          <ion-icon name="checkmark-circle"></ion-icon>
+          Done
+        </button>
+        <button ion-button color="secondary" icon-left>
+          <ion-icon name="trash"></ion-icon>
+          Delete
+        </button>
+       </ion-item-options>
+     </ion-item-sliding>
     </ion-list>
 
      <ion-list *ngSwitchCase = "'weather'">
