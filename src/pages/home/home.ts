@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 import { ForecastPage } from '../forecast/forecast';
 import { NavController } from 'ionic-angular';
 import { StorageService } from '../../providers/storage';
+import { ToDoItemPage } from '../to-do-item/to-do-item';
 
 @Component({
   selector: 'page-home',
@@ -15,6 +16,8 @@ import { StorageService } from '../../providers/storage';
 
 export class HomePage {
   pages: string = 'weather, todo';
+  public items = [];
+
   public weatherList = [];
   public localWeather: Object;
 
@@ -61,6 +64,20 @@ export class HomePage {
 
   viewForecast(cityWeather) {
     this.navCtrl.push(ForecastPage, {cityWeather: cityWeather});
+  }
+
+  addItem() {
+    let addModal = this.modalCtrl.create(ToDoItemPage);
+    addModal.onDidDismiss((item) => {
+      if(item) {
+        this.saveItem(item);
+      }
+    });
+    addModal.present();
+  }
+
+  saveItem(item) {
+    this.items.push(item);
   }
 
 }

@@ -9,6 +9,7 @@ import { TemperaturePipe } from '../pipes/temperature';
 import { ForecastPage } from '../pages/forecast/forecast';
 import { WeatherElem } from '../components/weather/weather';
 import { IonicStorageModule } from '@ionic/storage';
+import { ToDoItemPage } from '../pages/to-do-item/to-do-item';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { IonicStorageModule } from '@ionic/storage';
     AddPage,
     TemperaturePipe,
     ForecastPage,
-    WeatherElem
+    WeatherElem,
+    ToDoItemPage
   ],
   imports: [
     IonicModule.forRoot(MyApp),
@@ -28,7 +30,8 @@ import { IonicStorageModule } from '@ionic/storage';
     MyApp,
     HomePage,
     AddPage,
-    ForecastPage
+    ForecastPage,
+    ToDoItemPage
   ],
   providers: [
     StatusBar,
