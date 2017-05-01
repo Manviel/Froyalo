@@ -9,6 +9,7 @@ import { NavController } from 'ionic-angular';
 import { StorageService } from '../../providers/storage';
 import { ToDoItemPage } from '../to-do-item/to-do-item';
 import { ItemDetailPage } from '../item-detail/item-detail';
+import { ToData } from '../../providers/to-data';
 
 @Component({
   selector: 'page-home',
@@ -22,9 +23,14 @@ export class HomePage {
   public weatherList = [];
   public localWeather: Object;
 
-  constructor(public modalCtrl: ModalController, public weather: Weather, public navCtrl: NavController, public storage: StorageService) {
+  constructor(public modalCtrl: ModalController, public weather: Weather, public navCtrl: NavController, public storage: StorageService, public dataService: ToData) {
     this.getLocalWeather();
     this.getStorageWeather();
+    this.dataService.getData().then((todos) => {
+      if(todos) {
+        this.items = JSON.parse(todos);
+      }
+    });
   }
 
   getStorageWeather() {
@@ -79,6 +85,7 @@ export class HomePage {
 
   saveItem(item) {
     this.items.push(item);
+    this.dataService.save(this.items);
   }
 
   viewItem(item) {
