@@ -1,11 +1,16 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-title>
-      <img src="assets/icon/flat.png" class="logo-title" />
-    </ion-title>
-    <ion-buttons start>
+    <ion-buttons>
       <button ion-button (click)="addWeather()">
-        Add
+        <p class="add">
+          Add
+        </p>
+      </button>
+    </ion-buttons>
+    
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon name="cloud-circle"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
