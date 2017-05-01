@@ -8,6 +8,7 @@ import { ForecastPage } from '../forecast/forecast';
 import { NavController } from 'ionic-angular';
 import { StorageService } from '../../providers/storage';
 import { ToDoItemPage } from '../to-do-item/to-do-item';
+import { ItemDetailPage } from '../item-detail/item-detail';
 
 @Component({
   selector: 'page-home',
@@ -78,6 +79,12 @@ export class HomePage {
 
   saveItem(item) {
     this.items.push(item);
+  }
+
+  viewItem(item) {
+    this.navCtrl.push(ItemDetailPage, {
+      item: item
+    });
   }
 
 }
