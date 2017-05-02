@@ -28,10 +28,15 @@
    <div [ngSwitch]="pages">
 
      <ion-list *ngSwitchCase="'todo'">
-      <ion-item *ngFor="let item of items" (click)="viewItem(item)">
+        <ion-item *ngFor="let item of items" (click)="viewItem(item)">
           {{item.title}}
-       </ion-item>
-    </ion-list>
+            <ion-avatar item-right>
+              <button ion-button (click)="removePost(item)">
+                <ion-icon name="trash"></ion-icon>
+              </button>
+            </ion-avatar>
+        </ion-item>
+      </ion-list>
 
      <ion-list *ngSwitchCase = "'weather'">
        <weather [weather]="localWeather"
