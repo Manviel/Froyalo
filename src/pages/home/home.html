@@ -1,14 +1,11 @@
 <ion-header>
   <ion-navbar primary>
-    <ion-buttons>
-      <button ion-button icon-only (click)="addItem()">
-        <ion-icon name="add-circle"></ion-icon>
-      </button>
-    </ion-buttons>
-
-    <ion-buttons end>
-      <button ion-button icon-only (click)="addWeather()">
-        <ion-icon name="cloud-circle"></ion-icon>
+    <ion-title>
+      <img src="assets/icon/flat.png" class="logo-title" />
+    </ion-title>
+    <ion-buttons start>
+      <button ion-button (click)="addWeather()">
+        Add
       </button>
     </ion-buttons>
   </ion-navbar>
@@ -16,39 +13,16 @@
 
 <ion-content>
 
-  <ion-segment [(ngModel)]="pages">
-    <ion-segment-button value="todo">
-      To-Do list
-    </ion-segment-button>
-     <ion-segment-button value="weather">
-       Weather
-     </ion-segment-button>
-   </ion-segment>
+  <ion-list>
+    <weather [weather]="localWeather"
+      (viewMore)="viewForecast($event)">
+    </weather>
 
-   <div [ngSwitch]="pages">
+    <weather *ngFor="let weather of weatherList"
+      [weather]="weather"
+      (viewMore)="viewForecast($event)">
+    </weather>
 
-     <ion-list *ngSwitchCase="'todo'">
-        <ion-item *ngFor="let item of items" (click)="viewItem(item)">
-          {{item.title}}
-            <ion-avatar item-right>
-              <button ion-button (click)="removePost(item)">
-                <ion-icon name="trash"></ion-icon>
-              </button>
-            </ion-avatar>
-        </ion-item>
-      </ion-list>
-
-     <ion-list *ngSwitchCase = "'weather'">
-       <weather [weather]="localWeather"
-         (viewMore)="viewForecast($event)">
-       </weather>
-
-       <weather *ngFor="let weather of weatherList"
-         [weather]="weather"
-         (viewMore)="viewForecast($event)">
-       </weather>
-      </ion-list>
-
-   </div>
+  </ion-list>
 
 </ion-content>
