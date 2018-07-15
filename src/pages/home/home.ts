@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
+
 import { AddPage } from '../add/add';
-import { Weather } from '../../providers/weather';
-import 'rxjs/bundles/Rx';
-import 'rxjs/add/operator/map';
 import { ForecastPage } from '../forecast/forecast';
-import { NavController } from 'ionic-angular';
+
+import { Weather } from '../../providers/weather';
 import { StorageService } from '../../providers/storage';
 
 @Component({
@@ -23,43 +22,38 @@ export class HomePage {
   }
 
   getStorageWeather() {
-    this.storage.getWeathers().then((weathers) => {
+    this.storage.getWeathers().then(weathers => {
       this.weatherList = JSON.parse(weathers) || [];
     });
   }
 
   addWeather() {
     let modal = this.modalCtrl.create(AddPage);
-    modal.onDidDismiss( (data) => {
-      if (data) {
-        this.getWeather(data.city, data.country);
-      }
+    modal.onDidDismiss(data => {
+      if (data) this.getWeather(data.city, data.country);
     });
     modal.present();
   }
 
   getWeather(city: string, country: string) {
-    // берем с API
     this.weather.city(city, country)
       .map(data => data.json())
       .subscribe(data => {
         this.weatherList.push(data);
         this.storage.setWeathers(data);
       },
-    err => console.log(err),
-    () => console.log('get'))
+        err => console.log(err),
+    )
   }
 
   getLocalWeather() {
     this.weather.local().subscribe(
-      data => {
-        this.localWeather = data;
-      }
+      data => this.localWeather = data
     )
   }
 
   viewForecast(cityWeather) {
-    this.navCtrl.push(ForecastPage, {cityWeather: cityWeather});
+    this.navCtrl.push(ForecastPage, { cityWeather: cityWeather });
   }
 
 }

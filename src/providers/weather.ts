@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
+
 import { Geolocation } from '@ionic-native/geolocation';
 import { Observable } from 'rxjs/Observable';
 
@@ -8,9 +9,8 @@ export class Weather {
   private appId = '6658f4dc774e596256b9254f2868c969';
   private baseUrl = 'http://api.openweathermap.org/data/2.5/';
 
-  constructor(public http: Http, private geolocation: Geolocation) {
-    console.log('Hello Weather Provider');
-  }
+  constructor(public http: Http, private geolocation: Geolocation) { }
+
   city(city: string, country: string) {
     let url = this.baseUrl + 'weather';
     url += '?appId=' + this.appId;
@@ -29,8 +29,7 @@ export class Weather {
 
   local() {
     let Obs = Observable.create(observer => {
-
-      this.geolocation.getCurrentPosition().then((resp => {
+      this.geolocation.getCurrentPosition().then(resp => {
         let lat = resp.coords.latitude;
         let lng = resp.coords.longitude;
 
@@ -38,12 +37,11 @@ export class Weather {
         url += '?appId=' + this.appId;
         url += `&lat=${lat}&lon=${lng}`;
         this.http.get(url)
-          .subscribe(data => {
-            observer.next(data.json());
-          },
-        err => observer.error(err),
-        () => observer.complete())
-      }))
+          .subscribe(data => observer.next(data.json()),
+            err => observer.error(err),
+            () => observer.complete()
+          )
+      })
     })
     return Obs;
   }

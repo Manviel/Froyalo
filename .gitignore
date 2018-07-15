@@ -2,15 +2,8 @@
 # http://git-scm.com/docs/gitignore
 
 *~
-*.sw[mnpcod]
-*.log
-*.tmp
-*.tmp.*
-log.txt
-*.sublime-project
-*.sublime-workspace
-.vscode/
-npm-debug.log*
+.sourcemaps
+package-lock.json
 
 .idea/
 .sass-cache/

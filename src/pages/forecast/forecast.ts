@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import {Weather} from '../../providers/weather';
+
+import { Weather } from '../../providers/weather';
 
 @Component({
   selector: 'page-forecast',
@@ -18,15 +19,8 @@ export class ForecastPage {
   getForecast(cityId) {
     this.weather.forecast(cityId, 7)
       .map(data => data.json())
-      .subscribe(data => {
-        this.forecast = data.list;
-      },
-    err => console.log(err),
-    () => console.log('forecats complete'))
+      .subscribe(data => this.forecast = data.list,
+        err => console.log(err)
+      )
   }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ForecastPage');
-  }
-
 }
