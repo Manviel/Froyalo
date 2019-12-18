@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Ionic Home
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-item *ngIf="localWeather">
+      <ion-label>{{ localWeather.name }}</ion-label>
+      <img
+        src="http://openweathermap.org/img/w/{{localWeather.weather[0].icon}}.png"
+      />
+      <h3>{{ localWeather.weather[0].main }}</h3>
+      <h1>{{ localWeather.main.temp | temperature }}</h1>
+      <p>
+        Low: {{ localWeather.main.temp_min | temperature }}
+      </p>
+      <p>
+        High: {{ localWeather.main.temp_max | temperature }}
+      </p>
+    </ion-item>
+  </ion-list>
+</ion-content>

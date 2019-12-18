@@ -1,26 +1,27 @@
 import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-import { Geolocation } from '@ionic-native/geolocation';
-
-import { HomePage } from '../pages/home/home';
-
-import { Weather } from '../providers/weather';
-import { StorageService } from '../providers/storage';
+import { Platform } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
-  templateUrl: 'app.html',
-  providers: [Weather, Geolocation, StorageService]
+  selector: 'app-root',
+  templateUrl: 'app.component.html',
+  styleUrls: ['app.component.scss']
 })
-export class MyApp {
-  rootPage = HomePage;
+export class AppComponent {
+  constructor(
+    private platform: Platform,
+    private splashScreen: SplashScreen,
+    private statusBar: StatusBar
+  ) {
+    this.initializeApp();
+  }
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-    platform.ready().then(() => {
-      statusBar.styleDefault();
-      splashScreen.hide();
+  initializeApp() {
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
     });
   }
 }
