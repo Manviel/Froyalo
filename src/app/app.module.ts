@@ -1,48 +1,18 @@
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
-import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
-import { HttpModule } from '@angular/http';
-import { MyApp } from './app.component';
+import { RouteReuseStrategy } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
-import { HomePage } from '../pages/home/home';
-import { AddPage } from '../pages/add/add';
-import { ForecastPage } from '../pages/forecast/forecast';
+import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import { TemperaturePipe } from '../pipes/temperature';
-
-import { WeatherElem } from '../components/weather/weather';
-
-import { IonicStorageModule } from '@ionic/storage';
+import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    HomePage,
-    AddPage,
-    TemperaturePipe,
-    ForecastPage,
-    WeatherElem
-  ],
-  imports: [
-    BrowserModule,
-    HttpModule,
-    IonicModule.forRoot(MyApp),
-    IonicStorageModule.forRoot()
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    HomePage,
-    AddPage,
-    ForecastPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
-  ]
+  declarations: [AppComponent],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule, IonicModule.forRoot()],
+  providers: [Geolocation, { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

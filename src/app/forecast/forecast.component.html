@@ -1,0 +1,18 @@
+<form class="content" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label>City</ion-label>
+    <ion-input type="text" formControlName="city"></ion-input>
+  </ion-item>
+
+  <ion-button color="primary" type="submit">7 day forecast</ion-button>
+</form>
+
+<ion-list>
+  <ion-item *ngFor="let f of forecasts">
+    <ion-thumbnail>
+      <img src="http://openweathermap.org/img/w/{{ f.weather[0].icon }}.png" />
+    </ion-thumbnail>
+
+    <ion-label>Low: {{ f.temp.min | temperature }} High: {{ f.temp.max | temperature }}</ion-label>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,37 @@
+<form class="content" [formGroup]="createForm" (ngSubmit)="onSubmit()">
+  <ion-item>
+    <ion-label>City</ion-label>
+    <ion-input type="text" formControlName="city"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Country</ion-label>
+
+    <ion-select formControlName="country">
+      <ion-select-option value="us">USA</ion-select-option>
+      <ion-select-option value="ukr">Ukraine</ion-select-option>
+      <ion-select-option value="uk">United Kingdom</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-button color="primary" type="submit">Get Weather</ion-button>
+</form>
+
+<ion-card *ngIf="localWeather">
+  <ion-card-header>
+    <ion-thumbnail>
+      <img src="http://openweathermap.org/img/w/{{ localWeather.weather[0].icon }}.png" />
+    </ion-thumbnail>
+
+    <ion-card-subtitle>
+      {{ localWeather.name }}, {{ localWeather.weather[0].main }}
+    </ion-card-subtitle>
+
+    <ion-card-title>{{ localWeather.main.temp | temperature }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    Low: {{ localWeather.main.temp_min | temperature }} High: {{ localWeather.main.temp_max |
+    temperature }}
+  </ion-card-content>
+</ion-card>

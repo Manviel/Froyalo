@@ -1,0 +1,18 @@
+<ion-card *ngIf="localWeather">
+  <ion-card-header>
+    <ion-thumbnail>
+      <img src="http://openweathermap.org/img/w/{{ localWeather.weather[0].icon }}.png" />
+    </ion-thumbnail>
+
+    <ion-card-subtitle>
+      {{ localWeather.name }}, {{ localWeather.weather[0].main }}
+    </ion-card-subtitle>
+
+    <ion-card-title>{{ localWeather.main.temp | temperature }}</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    Low: {{ localWeather.main.temp_min | temperature }} High: {{ localWeather.main.temp_max |
+    temperature }}
+  </ion-card-content>
+</ion-card>
