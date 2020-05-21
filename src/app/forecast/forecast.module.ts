@@ -6,7 +6,7 @@ import { RouterModule } from '@angular/router';
 
 import { TemperaturePipeModule } from '../pipes/temperature-pipe.module';
 
-import { WeatherElemComponent } from './weather.page';
+import { ForecastComponent } from './forecast.component';
 
 @NgModule({
   imports: [
@@ -17,10 +17,10 @@ import { WeatherElemComponent } from './weather.page';
     RouterModule.forChild([
       {
         path: '',
-        component: WeatherElemComponent,
+        component: ForecastComponent,
       },
     ]),
   ],
-  declarations: [WeatherElemComponent],
+  declarations: [ForecastComponent],
 })
-export class WeatherPageModule {}
+export class ForecastModule {}

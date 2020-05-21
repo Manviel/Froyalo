@@ -5,8 +5,12 @@ const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', loadChildren: () => import('./home/home.module').then((m) => m.HomePageModule) },
   {
-    path: 'add',
+    path: 'get',
     loadChildren: () => import('./weather/weather.module').then((m) => m.WeatherPageModule),
+  },
+  {
+    path: 'forecast',
+    loadChildren: () => import('./forecast/forecast.module').then((m) => m.ForecastModule),
   },
 ];
 

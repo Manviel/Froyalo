@@ -16,3 +16,17 @@ export interface Weather {
   icon: string;
   description: string;
 }
+
+export interface ResponseForecast {
+  list: Forecast[];
+}
+
+export interface Forecast {
+  temp: Temp;
+  weather: Weather[];
+}
+
+export interface Temp {
+  max: number;
+  min: number;
+}

@@ -4,16 +4,16 @@ import { ToastController } from '@ionic/angular';
 
 import { WeatherService } from '../services/weather.service';
 
-import { LocalWeather } from '../models/weather';
+import { ResponseForecast, Forecast } from '../models/weather';
 
 @Component({
-  selector: 'app-weather',
-  templateUrl: 'weather.html',
-  styleUrls: ['weather.component.scss'],
+  selector: 'app-forecast',
+  templateUrl: 'forecast.component.html',
+  styleUrls: ['forecast.component.scss'],
 })
-export class WeatherElemComponent implements OnInit {
+export class ForecastComponent implements OnInit {
   public createForm: FormGroup;
-  public localWeather: LocalWeather;
+  public forecasts: Forecast[];
 
   constructor(
     private weatherService: WeatherService,
@@ -24,7 +24,6 @@ export class WeatherElemComponent implements OnInit {
   ngOnInit() {
     this.createForm = this.fb.group({
       city: ['', [Validators.required]],
-      country: ['', [Validators.required]],
     });
   }
 
@@ -39,18 +38,16 @@ export class WeatherElemComponent implements OnInit {
 
   onSubmit() {
     if (this.createForm.invalid) {
-      this.presentToast('Enter city and country');
+      this.presentToast('Enter city');
 
       return;
     }
 
-    this.weatherService
-      .city(this.createForm.get('city').value, this.createForm.get('country').value)
-      .subscribe(
-        (response: LocalWeather) => {
-          this.localWeather = response;
-        },
-        (err) => this.presentToast(err.error.message),
-      );
+    this.weatherService.forecast(this.createForm.get('city').value, 7).subscribe(
+      (response: ResponseForecast) => {
+        this.forecasts = response.list;
+      },
+      (err) => this.presentToast(err.error.message),
+    );
   }
 }

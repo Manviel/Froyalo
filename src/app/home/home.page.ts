@@ -12,7 +12,6 @@ import { LocalWeather } from '../models/weather';
 })
 export class HomePage {
   public localWeather: LocalWeather;
-  public src: string;
 
   constructor(private weatherService: WeatherService, private geolocation: Geolocation) {
     this.getLocalWeather();
@@ -27,7 +26,6 @@ export class HomePage {
 
         this.weatherService.local(lat, lng).subscribe((data: LocalWeather) => {
           this.localWeather = data;
-          this.src = `http://openweathermap.org/img/w/${data.weather[0].icon}.png`;
         });
       })
       .catch((error) => console.log(error));
