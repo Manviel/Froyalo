@@ -13,4 +13,6 @@ export interface Main {
 export interface Weather {
   id: number;
   main: string;
+  icon: string;
+  description: string;
 }
