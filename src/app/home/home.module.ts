@@ -1,15 +1,15 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { IonicModule } from "@ionic/angular";
-import { FormsModule } from "@angular/forms";
-import { RouterModule } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
-import { Geolocation } from "@ionic-native/geolocation/ngx";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
-import { HomePage } from "./home.page";
+import { HomePage } from './home.page';
 
-import { WeatherService } from "../services/weather.service";
-import { TemperaturePipe } from "../pipes/temperature";
+import { WeatherService } from '../services/weather.service';
+import { TemperaturePipe } from '../pipes/temperature';
 
 @NgModule({
   imports: [
@@ -18,12 +18,12 @@ import { TemperaturePipe } from "../pipes/temperature";
     IonicModule,
     RouterModule.forChild([
       {
-        path: "",
-        component: HomePage
-      }
-    ])
+        path: '',
+        component: HomePage,
+      },
+    ]),
   ],
   declarations: [HomePage, TemperaturePipe],
-  providers: [WeatherService, Geolocation]
+  providers: [WeatherService, Geolocation],
 })
 export class HomePageModule {}

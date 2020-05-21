@@ -1,35 +1,33 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
-import { Geolocation } from "@ionic-native/geolocation/ngx";
+import { Geolocation } from '@ionic-native/geolocation/ngx';
 
-import { WeatherService } from "../services/weather.service";
+import { WeatherService } from '../services/weather.service';
+import { LocalWeather } from '../models/weather';
 
 @Component({
-  selector: "app-home",
-  templateUrl: "home.page.html",
-  styleUrls: ["home.page.scss"]
+  selector: 'app-home',
+  templateUrl: 'home.page.html',
+  styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  public localWeather: Object;
+  public localWeather: LocalWeather;
 
-  constructor(
-    private weatherService: WeatherService,
-    private geolocation: Geolocation
-  ) {
+  constructor(private weatherService: WeatherService, private geolocation: Geolocation) {
     this.getLocalWeather();
   }
 
   getLocalWeather() {
     this.geolocation
       .getCurrentPosition()
-      .then(response => {
-        let lat = response.coords.latitude;
-        let lng = response.coords.longitude;
+      .then((response) => {
+        const lat = response.coords.latitude;
+        const lng = response.coords.longitude;
 
-        this.weatherService
-          .local(lat, lng)
-          .subscribe(data => (this.localWeather = data));
+        this.weatherService.local(lat, lng).subscribe((data: LocalWeather) => {
+          this.localWeather = data;
+        });
       })
-      .catch(error => console.log(error));
+      .catch((error) => console.log(error));
   }
 }

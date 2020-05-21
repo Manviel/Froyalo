@@ -1,10 +1,9 @@
-import { Injectable, Pipe } from "@angular/core";
+import { PipeTransform, Pipe } from '@angular/core';
 
 @Pipe({
-  name: "temperature"
+  name: 'temperature',
 })
-@Injectable({ providedIn: "root" })
-export class TemperaturePipe {
+export class TemperaturePipe implements PipeTransform {
   transform(value: string, args: any[]) {
     const c = Math.round(parseInt(value, 10) - 273.15);
 
